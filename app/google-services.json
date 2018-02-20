@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "462307864459",
+    "firebase_url": "https://laboapplets.firebaseio.com",
+    "project_id": "laboapplets",
+    "storage_bucket": "laboapplets.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462307864459:android:c1d14cce3c29830a",
+        "android_client_info": {
+          "package_name": "com.example.mintbox.labo_applets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462307864459-3kt5bcn6rgbh0tab60sdr79tktqtgjuk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mintbox.labo_applets",
+            "certificate_hash": "2e082bea907483aede2e71bb0559ef5e948ae084"
+          }
+        },
+        {
+          "client_id": "462307864459-o9g990pedimjj47im7riqam61q85dvlg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIdRKrA0bE7DbEGD9OcIlxFGSNmgwqN5U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462307864459-o9g990pedimjj47im7riqam61q85dvlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

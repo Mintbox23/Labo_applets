@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/contact_menu"
+        android:id="@+id/taskRec"
+
+        ></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:id="@+id/contact_menu"
+        android:background="@drawable/color1"
+        >
+
+        <Button
+            android:layout_width="137dp"
+            android:layout_height="match_parent"
+            android:text="Add"
+            android:background="@drawable/color1"
+            android:onClick="addButtonClicked"
+
+            />
+
+        <Button
+            android:layout_width="137dp"
+            android:layout_height="match_parent"
+            android:text="Settings"
+            android:background="@drawable/color1"
+
+            />
+
+        <Button
+            android:layout_width="137dp"
+            android:layout_height="match_parent"
+            android:text="Delete"
+            android:background="@drawable/color1"
+
+            />
+
+
+    </LinearLayout>
+</RelativeLayout>
