@@ -91,14 +91,12 @@ public class MainActivity extends AppCompatActivity {
         mTaskList.addOnItemTouchListener(new RecyclerItemClickListener(this, mTaskList ,new RecyclerItemClickListener.OnItemClickListener() {
 
                     @Override public void onItemClick(View view, int position) {
-
                         taskID = position;
 
                         //Sending to task ID to the next Activity for it to be able to access the correct firebase data.
                         Intent intent = new Intent(getBaseContext(), detailActivity.class);
                         intent.putExtra("TASK_ID", taskID);
                         startActivity(intent);
-
                     }
                     @Override public void onLongItemClick(View view, int position) {
 

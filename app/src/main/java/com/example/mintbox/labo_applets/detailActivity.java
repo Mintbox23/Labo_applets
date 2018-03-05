@@ -1,7 +1,9 @@
 package com.example.mintbox.labo_applets;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -80,7 +82,7 @@ public class detailActivity extends AppCompatActivity {
                         task_status.setText("Status : UNCOMPLETED");
 
                     //Asking the dataSnapshot when the task was created.
-                    time = dataSnapshot.child("time created").getValue().toString();
+                    time = dataSnapshot.child("time-created").getValue().toString();
 
                     //Updating the time string to a specific format.
                     String time_short = time.substring(11, 16);
@@ -132,6 +134,15 @@ public class detailActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+    }
+
+    //Sending the user to the MainActivity activity.
+    public void TDGoBackButtonClicked(View view){
+
+        startActivity(new Intent(detailActivity.this,MainActivity.class));
 
     }
 

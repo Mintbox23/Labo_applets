@@ -35,6 +35,7 @@
             android:layout_width="137dp"
             android:layout_height="match_parent"
             android:text="Settings"
+            android:id="@+id/settingsButton"
             android:background="@drawable/color1"
 
             />
@@ -43,6 +44,7 @@
             android:layout_width="137dp"
             android:layout_height="match_parent"
             android:text="Delete"
+            android:id="@+id/deleteButton"
             android:background="@drawable/color1"
 
             />

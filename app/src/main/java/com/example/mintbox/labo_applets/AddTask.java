@@ -1,5 +1,6 @@
 package com.example.mintbox.labo_applets;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -36,7 +37,7 @@ public class AddTask extends AppCompatActivity {
         addedTask = findViewById(R.id.add_task);
         //Linking our databases references to the right paths in firebase.
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Tasks");
-        mDatabaseTC = FirebaseDatabase.getInstance().getReference().child("Task count");
+        mDatabaseTC = FirebaseDatabase.getInstance().getReference().child("Task-count");
 
         //Event listener to get the number of tasks added so far from firebase.
         mDatabaseTC.addValueEventListener( new ValueEventListener() {
@@ -77,11 +78,11 @@ public class AddTask extends AppCompatActivity {
 
                 newPost_task.child("name").setValue(taskName);
 
-                newPost_task.child("time created").setValue(Calendar.getInstance().getTime().toString());
+                newPost_task.child("time-created").setValue(Calendar.getInstance().getTime().toString());
 
                 newPost_task.child("isCompleted").setValue(false);
 
-                FirebaseDatabase.getInstance().getReference().child("Task count").setValue(Integer.toString(itemCount));
+                FirebaseDatabase.getInstance().getReference().child("Task-count").setValue(Integer.toString(itemCount));
 
                 //Now that the message is saved we can clear the editMessage space to accommodate the user.
                 addedTask.setText("");
@@ -89,6 +90,13 @@ public class AddTask extends AppCompatActivity {
 
         }
 
+
+    }
+
+    //Sending the user to the MainActivity activity.
+    public void ATGoBackButtonClicked(View view){
+
+        startActivity(new Intent(AddTask.this,MainActivity.class));
 
     }
 

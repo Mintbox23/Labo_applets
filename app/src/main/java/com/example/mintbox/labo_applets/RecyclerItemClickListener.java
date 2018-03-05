@@ -15,9 +15,12 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+
 public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
 
     private OnItemClickListener mListener;
+
+
 
     public interface OnItemClickListener {
         public void onItemClick(View view, int position);
@@ -27,12 +30,20 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
 
     GestureDetector mGestureDetector;
 
-    public RecyclerItemClickListener(Context context, final RecyclerView recyclerView, OnItemClickListener listener) {
+    public RecyclerItemClickListener(final Context context, final RecyclerView recyclerView, OnItemClickListener listener) {
         mListener = listener;
         mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                return true;
+
+                View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
+
+                if (e.getX() <  child.findViewById(R.id.check_box).getTop())                //NO IDEA WHY IT WORKS BUT IT DOES :D !!!
+                    return false;
+
+                else
+                    return true;
+
             }
 
             @Override
