@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by MintBox on 2/15/2018.
@@ -43,29 +44,24 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
 
     //Method displaying the time the Task was completed or nothing if the task is not completed yet.
     public void setCompletedDate(String completedDate) {
+
         TextView task_time = (TextView) mView.findViewById(R.id.task_completion);
 
         if(completedDate != null) {
 
-            //Updating the time string to a specific format before displaying it.
-            String time_short = completedDate.substring(11, 16);
-            String hours_string = completedDate.substring(11, 13);
-            int hours_int = Integer.parseInt(hours_string);
+            //formatting date in Java using SimpleDateFormat
+            try {
+                DateFormat format1 = new SimpleDateFormat("EEE LLL dd HH:mm:ss zzz YYYY", Locale.ENGLISH);
+                DateFormat format2 = new SimpleDateFormat("LLL d, YYYY - h:mm aa", Locale.ENGLISH);
 
-            if (hours_int > 12) {
-                task_time.setText(completedDate.substring(4, 10) + ", " + completedDate.substring(24, 28) + " - " + (hours_int - 12) + completedDate.substring(13, 16) + " PM");
-            } else if (hours_int == 12) {
-                task_time.setText(completedDate.substring(4, 10) + ", " + completedDate.substring(24, 28) + " - " + time_short + " PM");
-            } else if (hours_int < 12) {
-                if (hours_int >= 10) {
-                    task_time.setText(completedDate.substring(4, 10) + ", " + completedDate.substring(24, 28) + " - " + time_short + " AM");
-                } else {
-                    task_time.setText(completedDate.substring(4, 10) + ", " + completedDate.substring(24, 28) + " - " + completedDate.substring(12, 16) + " AM");
-                }
+                Date date1 = format1.parse(completedDate);
+
+                task_time.setText(format2.format(date1));
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-        }
-        
 
+        }
     }
 
 

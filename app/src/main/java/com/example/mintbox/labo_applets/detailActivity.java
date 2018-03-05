@@ -11,6 +11,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created by MintBox on 2/18/2018.
  *
@@ -69,11 +75,16 @@ public class detailActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
 
+
                     //Displaying the task ID.
                     task_id.setText("Task ID : "+Integer.toString(taskID));
 
+
+
                     //Displaying the task description.
                     task_description.setText("Task : "+dataSnapshot.child("name").getValue().toString());
+
+
 
                     //Asking the dataSnapshot if the task is completed or not.
                     if(dataSnapshot.child("isCompleted").getValue().toString() == "true")
@@ -81,50 +92,42 @@ public class detailActivity extends AppCompatActivity {
                     else
                         task_status.setText("Status : UNCOMPLETED");
 
+
+
                     //Asking the dataSnapshot when the task was created.
                     time = dataSnapshot.child("time-created").getValue().toString();
 
-                    //Updating the time string to a specific format.
-                    String time_short = time.substring(11, 16);
-                    String hours_string = time.substring(11, 13);
-                    int hours_int = Integer.parseInt(hours_string);
+                    try {
+                        DateFormat format1 = new SimpleDateFormat("EEE LLL dd HH:mm:ss zzz YYYY", Locale.ENGLISH);
+                        DateFormat format2 = new SimpleDateFormat("LLL d, YYYY - h:mm aa", Locale.ENGLISH);
 
-                    if (hours_int > 12) {
-                        time_created.setText("Created on : "+time.substring(4, 10) + ", " + time.substring(24, 28) + " - " + (hours_int - 12) + time.substring(13, 16) + " PM");
-                    } else if (hours_int == 12) {
-                        time_created.setText("Created on : "+time.substring(4, 10) + ", " + time.substring(24, 28) + " - " + time_short + " PM");
-                    } else if (hours_int < 12) {
-                        if (hours_int >= 10) {
-                            time_created.setText("Created on : "+time.substring(4, 10) + ", " + time.substring(24, 28) + " - " + time_short + " AM");
-                        } else {
-                            time_created.setText("Created on : "+time.substring(4, 10) + ", " + time.substring(24, 28) + " - " + time.substring(12, 16) + " AM");
-                        }
+                        Date date1 = format1.parse(time);
+
+                        time_created.setText("Created on : "+format2.format(date1));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
                     }
+
+
 
                     //Asking the dataSnapshot if and when the task was completed.
                     if(dataSnapshot.child("completedDate").exists()) {
+
                         time = dataSnapshot.child("completedDate").getValue().toString();
 
-                        //Updating the time string to a specific format.
-                        String time_short2 = time.substring(11, 16);
-                        String hours_string2 = time.substring(11, 13);
-                        int hours_int2 = Integer.parseInt(hours_string2);
+                        try {
+                            DateFormat format1 = new SimpleDateFormat("EEE LLL dd HH:mm:ss zzz YYYY", Locale.ENGLISH);
+                            DateFormat format2 = new SimpleDateFormat("LLL d, YYYY - h:mm aa", Locale.ENGLISH);
 
-                        if (hours_int2 > 12) {
-                            time_completed.setText("Completed on : " +time.substring(4, 10) + ", " + time.substring(24, 28) + " - " + (hours_int - 12) + time.substring(13, 16) + " PM");
-                        } else if (hours_int2 == 12) {
-                            time_completed.setText("Completed on : " +time.substring(4, 10) + ", " + time.substring(24, 28) + " - " + time_short2 + " PM");
-                        } else if (hours_int2 < 12) {
-                            if (hours_int2 >= 10) {
-                                time_completed.setText("Completed on : " +time.substring(4, 10) + ", " + time.substring(24, 28) + " - " + time_short2 + " AM");
-                            } else {
-                                time_completed.setText("Completed on : " +time.substring(4, 10) + ", " + time.substring(24, 28) + " - " + time.substring(12, 16) + " AM");
-                            }
+                            Date date1 = format1.parse(time);
+
+                            time_completed.setText("Completed on : "+format2.format(date1));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
                         }
 
-                    }
+                     }
                 }
-
 
             }
 
